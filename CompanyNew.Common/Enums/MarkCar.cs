@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompanyNew.Data
+namespace CompanyNew.Common.Enums
 {
-    public class Class1
+    public enum MarkCar
     {
+        Huyndai = 1,
+        Peugeot,
+        BMW,
+        AUDI
     }
 }

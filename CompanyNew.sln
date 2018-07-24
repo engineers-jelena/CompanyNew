@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyNew.Data.Model", "CompanyNew.Data.Model\CompanyNew.Data.Model.csproj", "{F5465F3D-1C5B-419E-BA2F-FC9AEDDE425D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyNew.Core", "CompanyNew.Core\CompanyNew.Core.csproj", "{AC60C3BD-0D42-437A-9051-4DBDC143A297}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4A1462A-799C-4A9F-B4E7-C8A72BAF1E47} = {E4A1462A-799C-4A9F-B4E7-C8A72BAF1E47}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyNew.Common", "CompanyNew.Common\CompanyNew.Common.csproj", "{E14C877D-66F6-42A1-A04B-9BBC1F00B34B}"
 EndProject
@@ -44,6 +47,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
 		SolutionGuid = {63BC5E9F-0BE7-48AF-85A5-E8E9CBB0BD4F}
 	EndGlobalSection
 EndGlobal

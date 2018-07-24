@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace CompanyNew.Data.Model
 {
-    public class Class1
+    public class Company : BaseModel
     {
+
+        public string nameOfCompany { get; set; }
+
+        public virtual List<Employee> Employees { get; set; }
+
     }
 }
