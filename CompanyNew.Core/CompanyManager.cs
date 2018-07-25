@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using CompanyNew.Data.Model;
 using CompanyNew.Data.UnitOfWork;
 using CompanyNew.Common.Helpers;
-using Uow.Package.Data;
 
-//using System.Net.Http.;
 
 namespace CompanyNew.Core
 {
@@ -21,7 +15,7 @@ namespace CompanyNew.Core
 
         public Company Register(Company company)
         {
-            using (Data.UnitOfWork.UnitOfWork uow = new Data.UnitOfWork.UnitOfWork())
+            using (UnitOfWork uow = new UnitOfWork())
             {
                 company.DateModified = DateTime.UtcNow;
                 company.DateCreated = DateTime.UtcNow;
@@ -39,7 +33,7 @@ namespace CompanyNew.Core
 
         public void DeleteCompanyById(int companyId)
         {
-            using (Data.UnitOfWork.UnitOfWork uow = new Data.UnitOfWork.UnitOfWork())
+            using (UnitOfWork uow = new UnitOfWork())
             {
                 Company company = uow.CompanyRepository.GetById(companyId);
                 ValidationHelper.ValidateNotNull(company);
@@ -59,7 +53,7 @@ namespace CompanyNew.Core
         public Company CompanyAddPEmployee(int companyId, List<string> employees)
         {
 
-            using (Data.UnitOfWork.UnitOfWork uow = new Data.UnitOfWork.UnitOfWork())
+            using (UnitOfWork uow = new UnitOfWork())
             {
                 Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
                 ValidationHelper.ValidateNotNull(companyDb);

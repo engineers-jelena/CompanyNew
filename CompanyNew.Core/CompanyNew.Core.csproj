@@ -76,10 +76,6 @@
       <Project>{e3e4d35c-18a1-486a-8f51-21e4264c861e}</Project>
       <Name>CompanyNew.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CompanyNew\CompanyNew.Api.csproj">
-      <Project>{E4A1462A-799C-4A9F-B4E7-C8A72BAF1E47}</Project>
-      <Name>CompanyNew.Api</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

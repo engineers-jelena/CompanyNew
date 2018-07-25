@@ -20,7 +20,7 @@ namespace CompanyNew.Helpers
 
             HttpStatusCode statusCode;
 
-            if (exception is ValidationException)
+            if (exception is Common.Exceptions.ValidationException)
             {
                 statusCode = HttpStatusCode.BadRequest;
             }
@@ -28,7 +28,7 @@ namespace CompanyNew.Helpers
             {
                 statusCode = HttpStatusCode.InternalServerError;
             }
-            else if (exception is AuthenticationException)
+            else if (exception is Common.Exceptions.AuthenticationException)
             {
                 statusCode = HttpStatusCode.Unauthorized;
             }

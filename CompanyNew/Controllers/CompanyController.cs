@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
-using CompanyNew.Api.Helpers;
 using System.Web.Http;
 using CompanyNew.Data.Model;
 using System.Net.Mail;
@@ -12,11 +11,9 @@ using System.Text;
 using System.Web.Configuration;
 using System.Web.Http.Results;
 using AutoMapper;
-using CompanyNew.Api.Models.User;
 using CompanyNew.Common.Enums;
 using CompanyNew.Common.Exceptions;
 using System.ComponentModel.DataAnnotations;
-using CompanyNew.Api.Models.Company;
 using CompanyNew.Models;
 using CompanyNew.Helpers;
 
@@ -32,7 +29,7 @@ namespace CompanyNew.Controllers
         [HttpPost]
         public object Register(RegisterCompanyModel model)
         {
-            Company company = new Data.Model.Companies { nameOfCompany = model.nameOfCompany };
+            Company company = new Data.Model.Company { nameOfCompany = model.nameOfCompany };
             Company registeredCompany = CompanyManager.Register(company);
             RegisterCompanyModel modelNew = Mapper.Map<RegisterCompanyModel>(company);
 
