@@ -25,43 +25,43 @@ namespace CompanyNew.Controllers
         #region Company Register
 
 
-        //[ValidateModel]
-        //[HttpPost]
-        //public object Register(RegisterCompanyModel model)
-        //{
-        //    Company company = new Data.Model.Company { nameOfCompany = model.nameOfCompany };
-        //    Company registeredCompany = CompanyManager.Register(company);
-        //    RegisterCompanyModel modelNew = Mapper.Map<RegisterCompanyModel>(company);
+        [ValidateModel]
+        [HttpPost]
+        public object Register(RegisterCompanyModel model)
+        {
+            Company company = new Data.Model.Company { nameOfCompany = model.nameOfCompany };
+            Company registeredCompany = CompanyManager.Register(company);
+            RegisterCompanyModel modelNew = Mapper.Map<RegisterCompanyModel>(company);
 
-        //    return new { modelNew };
-        //}
+            return new { modelNew };
+        }
 
-        //#endregion
+        #endregion
 
-        //#region Company Delete
+        #region Company Delete
 
-        //[AllowAnonymous]
-        //[HttpGet]
-        //public bool DeleteCompany(int companyId)
-        //{
-        //    CompanyManager.DeleteCompanyById(companyId);
-        //    return true;
-        //}
+        [AllowAnonymous]
+        [HttpGet]
+        public bool DeleteCompany(int companyId)
+        {
+            CompanyManager.DeleteCompanyById(companyId);
+            return true;
+        }
 
-        //#endregion
+        #endregion
 
-        //#region
+        #region
 
-        //[AllowAnonymous]
-        //[HttpPost]
-        //public CompanyEmployeeModel AddEmployees(CompanyEmployeeModel model)
-        //{
-        //    Company companyDb = CompanyManager.CompanyAddPEmployee(model.idCompany, model.NameEmployee);
-        //    CompanyEmployeeModel viewModel = Mapper.Map<CompanyEmployeeModel>(companyDb);
-        //    viewModel.NameEmployee = companyDb.Employees.Select(u => u.NameOfEmployee).ToList();
+        [AllowAnonymous]
+        [HttpPost]
+        public CompanyEmployeeModel AddEmployees(CompanyEmployeeModel model)
+        {
+            Company companyDb = CompanyManager.CompanyAddPEmployee(model.idCompany, model.NameEmployee);
+            CompanyEmployeeModel viewModel = Mapper.Map<CompanyEmployeeModel>(companyDb);
+            viewModel.NameEmployee = companyDb.Employees.Select(u => u.NameOfEmployee).ToList();
 
-        //    return viewModel;
-        //}
+            return viewModel;
+        }
 
         #endregion
 
