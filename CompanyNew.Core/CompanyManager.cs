@@ -1,9 +1,7 @@
-﻿using System;
+﻿using CompanyNew.Data.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CompanyNew.Data.Model;
-using CompanyNew.Data.UnitOfWork;
-using CompanyNew.Common.Helpers;
 
 
 namespace CompanyNew.Core
@@ -13,7 +11,7 @@ namespace CompanyNew.Core
 
         #region Register Company
 
-        public Company Register(Company company)
+        public Data.Model.Company Register(Data.Model.Company company)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -35,8 +33,8 @@ namespace CompanyNew.Core
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Company company = uow.CompanyRepository.GetById(companyId);
-                ValidationHelper.ValidateNotNull(company);
+                Data.Model.Company company = uow.CompanyRepository.GetById(companyId);
+                Common.Helpers.ValidationHelper.ValidateNotNull(company);
 
                 company.DateDeleted = DateTime.UtcNow;
                 uow.CompanyRepository.Update(company);
@@ -50,19 +48,19 @@ namespace CompanyNew.Core
         #region add Employee
 
 
-        public Company CompanyAddPEmployee(int companyId, List<string> employees)
+        public Data.Model.Company CompanyAddPEmployee(int companyId, List<string> employees)
         {
 
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
-                ValidationHelper.ValidateNotNull(companyDb);
+                Data.Model.Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
+                Common.Helpers.ValidationHelper.ValidateNotNull(companyDb);
 
                 DateTime now = DateTime.UtcNow;
 
                 foreach (string employee in employees)
                 {
-                    Employee newEmployee = new Employee { DateCreated = now, DateModified = now, NameOfEmployee = employee, CompanyId = companyId };
+                    Data.Model.Employee newEmployee = new Data.Model.Employee { DateCreated = now, DateModified = now, NameOfEmployee = employee, CompanyId = companyId };
                     uow.EmployeeRepository.Insert(newEmployee);
                 }
 

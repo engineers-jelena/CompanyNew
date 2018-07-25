@@ -318,7 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CompanyNew.Common\CompanyNew.Common.csproj">
-      <Project>{E14C877D-66F6-42A1-A04B-9BBC1F00B34B}</Project>
+      <Project>{e14c877d-66f6-42a1-a04b-9bbc1f00b34b}</Project>
       <Name>CompanyNew.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\CompanyNew.Data.Model\CompanyNew.Data.Model.csproj">
