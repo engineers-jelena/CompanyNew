@@ -1,4 +1,5 @@
-﻿using CompanyNew.Data.UnitOfWork;
+﻿using CompanyNew.Data.Model;
+using CompanyNew.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CompanyNew.Core
 
         #region Register Company
 
-        public Data.Model.Company Register(Data.Model.Company company)
+        public Company Register(Company company)
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
@@ -33,7 +34,7 @@ namespace CompanyNew.Core
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Data.Model.Company company = uow.CompanyRepository.GetById(companyId);
+                Company company = uow.CompanyRepository.GetById(companyId);
                 Common.Helpers.ValidationHelper.ValidateNotNull(company);
 
                 company.DateDeleted = DateTime.UtcNow;
@@ -45,6 +46,25 @@ namespace CompanyNew.Core
 
         #endregion
 
+        #region
+
+       
+            public List<Company> PreviewAllCompanies()
+        {
+
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    List<Company> allCompanies = uow.CompanyRepository.GetAll();
+
+                    return allCompanies;
+                }
+            }
+        }
+
+
+        #endregion
+
         #region add Employee
 
 
@@ -53,14 +73,14 @@ namespace CompanyNew.Core
 
             using (UnitOfWork uow = new UnitOfWork())
             {
-                Data.Model.Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
+                Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
                 Common.Helpers.ValidationHelper.ValidateNotNull(companyDb);
 
-                DateTime now = DateTime.UtcNow;
+                //DateTime now = DateTime.UtcNow;
 
                 foreach (string employee in employees)
                 {
-                    Data.Model.Employee newEmployee = new Data.Model.Employee { DateCreated = now, DateModified = now, NameOfEmployee = employee, CompanyId = companyId };
+                    Employee newEmployee = new Employee { /*DateCreated = now, DateModified = now,*/ NameOfEmployee = employee, CompanyId = companyId };
                     uow.EmployeeRepository.Insert(newEmployee);
                 }
 

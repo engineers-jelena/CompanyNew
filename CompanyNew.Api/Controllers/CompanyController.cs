@@ -16,6 +16,7 @@ using CompanyNew.Common.Exceptions;
 using System.ComponentModel.DataAnnotations;
 using CompanyNew.Models;
 using CompanyNew.Helpers;
+using System.Web.Util;
 
 namespace CompanyNew.Controllers
 {
@@ -29,12 +30,29 @@ namespace CompanyNew.Controllers
         [HttpPost]
         public object Register(RegisterCompanyModel model)
         {
+         
             Company company = new Company { nameOfCompany = model.nameOfCompany };
             Company registeredCompany = CompanyManager.Register(company);
             RegisterCompanyModel modelNew = Mapper.Map<RegisterCompanyModel>(company);
 
             return new { modelNew };
+
         }
+
+
+
+        #endregion
+
+        #region Preview all companies
+
+        [AllowAnonymous]
+        [HttpGet]
+        public List<Company> PreviewCompanies()
+        {
+            List<Company> listOfAllCompanies = CompanyManager.PreviewAllCompanies();
+            return listOfAllCompanies;
+        }
+
 
         #endregion
 

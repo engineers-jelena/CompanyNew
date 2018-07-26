@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201807240801229_createdDB.Designer.cs">
       <DependentUpon>201807240801229_createdDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807261337361_version26.cs" />
+    <Compile Include="Migrations\201807261337361_version26.Designer.cs">
+      <DependentUpon>201807261337361_version26.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +70,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807240801229_createdDB.resx">
       <DependentUpon>201807240801229_createdDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261337361_version26.resx">
+      <DependentUpon>201807261337361_version26.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
