@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="Helpers\AutoMapperConfiguration.cs" />
     <Compile Include="Helpers\GlobalExceptionHandler.cs" />
+    <Compile Include="Helpers\TokenAuthorizeAttribute.cs" />
     <Compile Include="Helpers\ValidateModelAttribute.cs" />
     <Compile Include="Models\CompanyEmployeeModel.cs" />
     <Compile Include="Models\EmployeeCarModel.cs" />

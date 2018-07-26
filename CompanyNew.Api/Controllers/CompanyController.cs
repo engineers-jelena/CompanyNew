@@ -29,7 +29,7 @@ namespace CompanyNew.Controllers
         [HttpPost]
         public object Register(RegisterCompanyModel model)
         {
-            Company company = new Data.Model.Company { nameOfCompany = model.nameOfCompany };
+            Company company = new Company { nameOfCompany = model.nameOfCompany };
             Company registeredCompany = CompanyManager.Register(company);
             RegisterCompanyModel modelNew = Mapper.Map<RegisterCompanyModel>(company);
 
