@@ -1,4 +1,5 @@
-﻿using CompanyNew.Data.Model;
+﻿using CompanyNew.Common.Enums;
+using CompanyNew.Data.Model;
 using CompanyNew.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -46,7 +47,7 @@ namespace CompanyNew.Core
 
         #endregion
 
-        #region
+        #region preview companies
 
        
             public List<Company> PreviewAllCompanies()
@@ -76,11 +77,11 @@ namespace CompanyNew.Core
                 Company companyDb = uow.CompanyRepository.Find(u => u.Id == companyId).FirstOrDefault();
                 Common.Helpers.ValidationHelper.ValidateNotNull(companyDb);
 
-                //DateTime now = DateTime.UtcNow;
+                DateTime now = DateTime.UtcNow;
 
                 foreach (string employee in employees)
                 {
-                    Employee newEmployee = new Employee { /*DateCreated = now, DateModified = now,*/ NameOfEmployee = employee, CompanyId = companyId };
+                    Employee newEmployee = new Employee { DateCreated = now, DateModified = now, NameOfEmployee = employee, CompanyId = companyId };
                     uow.EmployeeRepository.Insert(newEmployee);
                 }
 
@@ -92,7 +93,53 @@ namespace CompanyNew.Core
 
 
         #endregion
+        #region add Cars
 
+
+        public Car AddCars(int employeeId, List<MarkCar> cars)
+        {
+
+            using (UnitOfWork uow = new UnitOfWork())
+            {
+                Employee employeeDb = uow.EmployeeRepository.Find(u => u.EmployeeId == employeeId).FirstOrDefault();
+                Common.Helpers.ValidationHelper.ValidateNotNull(employeeDb);
+
+                DateTime now = DateTime.UtcNow;
+                Car newCar = null;
+                foreach (MarkCar car in cars)
+                {
+                     newCar = new Car { DateCreated = now, DateModified = now, EmployeeId = employeeId,MarkOfCar = car};
+                    uow.CarRepository.Insert(newCar);
+                }
+
+                uow.Save();
+
+                return newCar;
+            }
+        }
+
+
+        #endregion
+
+        #region preview employees by company
+
+
+        public List<Employee> PreviewEmployees()
+        {
+
+            {
+                using (UnitOfWork uow = new UnitOfWork())
+                {
+                    List<Employee> allEmployee = uow.EmployeeRepository.GetAll();
+
+                    return allEmployee;
+                }
+            }
+        }
+
+
+        #endregion
+    
 
     }
 }

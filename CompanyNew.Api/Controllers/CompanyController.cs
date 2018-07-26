@@ -68,7 +68,7 @@ namespace CompanyNew.Controllers
 
         #endregion
 
-        #region
+        #region add employee
 
         [AllowAnonymous]
         [HttpPost]
@@ -77,6 +77,34 @@ namespace CompanyNew.Controllers
             Company companyDb = CompanyManager.CompanyAddPEmployee(model.idCompany, model.NameEmployee);
             CompanyEmployeeModel viewModel = Mapper.Map<CompanyEmployeeModel>(companyDb);
             viewModel.NameEmployee = companyDb.Employees.Select(u => u.NameOfEmployee).ToList();
+
+            return viewModel;
+        }
+
+        #endregion
+
+        #region Preview all employees
+
+        [AllowAnonymous]
+        [HttpGet]
+        public List<Employee> PreviewEmployees()
+        {
+            List<Employee> listOfAllEmployees = CompanyManager.PreviewEmployees();
+            return listOfAllEmployees;
+        }
+
+
+        #endregion
+
+
+        #region add cars
+
+        [AllowAnonymous]
+        [HttpPost]
+        public EmployeeCarModel AddCars(EmployeeCarModel model)
+        {
+            Car caarsDb = CompanyManager.AddCars(model.EmployeeId,model.CarTypes);
+            EmployeeCarModel viewModel = Mapper.Map<EmployeeCarModel>(caarsDb);
 
             return viewModel;
         }

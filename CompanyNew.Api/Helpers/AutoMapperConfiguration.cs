@@ -16,6 +16,7 @@ namespace CompanyNew.Helpers
         {
             CreateMap<Company, RegisterCompanyModel>().ReverseMap();
             CreateMap<Company, CompanyEmployeeModel>().ReverseMap();
+            CreateMap<Car, EmployeeCarModel>().ReverseMap();
 
 
         }
