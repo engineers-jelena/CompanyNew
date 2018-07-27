@@ -60,9 +60,9 @@
     <Compile Include="Migrations\201807261337361_version26.Designer.cs">
       <DependentUpon>201807261337361_version26.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807261756226_fixeddatabaseemployee.cs" />
-    <Compile Include="Migrations\201807261756226_fixeddatabaseemployee.Designer.cs">
-      <DependentUpon>201807261756226_fixeddatabaseemployee.cs</DependentUpon>
+    <Compile Include="Migrations\201807271237514_addedtransactions.cs" />
+    <Compile Include="Migrations\201807271237514_addedtransactions.Designer.cs">
+      <DependentUpon>201807271237514_addedtransactions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,8 +78,8 @@
     <EmbeddedResource Include="Migrations\201807261337361_version26.resx">
       <DependentUpon>201807261337361_version26.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261756226_fixeddatabaseemployee.resx">
-      <DependentUpon>201807261756226_fixeddatabaseemployee.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807271237514_addedtransactions.resx">
+      <DependentUpon>201807271237514_addedtransactions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

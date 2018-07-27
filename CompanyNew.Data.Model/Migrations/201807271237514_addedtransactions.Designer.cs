@@ -7,13 +7,13 @@ namespace CompanyNew.Data.Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class fixeddatabaseemployee : IMigrationMetadata
+    public sealed partial class addedtransactions : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fixeddatabaseemployee));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addedtransactions));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807261756226_fixeddatabaseemployee"; }
+            get { return "201807271237514_addedtransactions"; }
         }
         
         string IMigrationMetadata.Source

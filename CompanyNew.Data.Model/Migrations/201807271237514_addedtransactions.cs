@@ -3,7 +3,7 @@ namespace CompanyNew.Data.Model.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class fixeddatabaseemployee : DbMigration
+    public partial class addedtransactions : DbMigration
     {
         public override void Up()
         {

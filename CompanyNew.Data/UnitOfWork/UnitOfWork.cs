@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +12,30 @@ namespace CompanyNew.Data.UnitOfWork
 {
     public class UnitOfWork : IDisposable
     {
+        private readonly string _connectionString;
+       
+        
+        public UnitOfWork(string connectionString = null, bool useTransaction = false)
+        {
+            _connectionString = connectionString;
+
+            if (useTransaction) {
+                transaction = DataContext.Database.BeginTransaction();
+            }
+
+        }
+
         #region Fields
 
         /// <summary>
         /// Data context
         /// </summary>
         private CompanyNewContext context;
-
-
+        private DbContextTransaction transaction;
         private GenericRepository<Company> companyRepository;
         private GenericRepository<Employee> employeeRepository;
         private GenericRepository<Car> carRepository;
+
 
         #endregion Fields
 
@@ -39,7 +54,17 @@ namespace CompanyNew.Data.UnitOfWork
 
         #region Repository
 
+        public void Commit()
+        {
+            transaction.Commit();
+          
+        }
 
+        public void Rollback()
+        {
+            transaction.Rollback();
+            
+        }
 
         public GenericRepository<Employee> EmployeeRepository
         {
@@ -77,7 +102,7 @@ namespace CompanyNew.Data.UnitOfWork
             context.ChangeTracker.DetectChanges();
             await context.SaveChangesAsync();
         }
-
+     
         public void Save()
         {
             try
@@ -91,6 +116,7 @@ namespace CompanyNew.Data.UnitOfWork
             }
         }
 
+       
         #endregion Methods
 
 

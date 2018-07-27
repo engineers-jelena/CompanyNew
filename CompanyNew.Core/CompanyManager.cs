@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
+
 namespace CompanyNew.Core
 {
     public class CompanyManager
@@ -99,22 +100,34 @@ namespace CompanyNew.Core
         public Car AddCars(int employeeId, List<MarkCar> cars)
         {
 
-            using (UnitOfWork uow = new UnitOfWork())
+            using (UnitOfWork uow = new UnitOfWork(null, true))
             {
-                Employee employeeDb = uow.EmployeeRepository.Find(u => u.EmployeeId == employeeId).FirstOrDefault();
-                Common.Helpers.ValidationHelper.ValidateNotNull(employeeDb);
-
-                DateTime now = DateTime.UtcNow;
-                Car newCar = null;
-                foreach (MarkCar car in cars)
+                try
                 {
-                     newCar = new Car { DateCreated = now, DateModified = now, EmployeeId = employeeId,MarkOfCar = car};
-                    uow.CarRepository.Insert(newCar);
+                    Employee employeeDb = uow.EmployeeRepository.Find(u => u.EmployeeId == employeeId).FirstOrDefault();
+                    Common.Helpers.ValidationHelper.ValidateNotNull(employeeDb);
+
+                    DateTime now = DateTime.UtcNow;
+                    Car newCar = null;
+                    foreach (MarkCar car in cars)
+                    {
+                        newCar = new Car { DateCreated = now, DateModified = now, EmployeeId = employeeId, MarkOfCar = car};
+                 
+                        uow.CarRepository.Insert(newCar);
+                    }
+
+                    uow.Save();
+                    uow.Commit();
+
+                    return newCar;
+ 
                 }
-
-                uow.Save();
-
-                return newCar;
+                catch (Exception x)
+                {
+                    uow.Rollback();
+                    throw x;
+                }
+               
             }
         }
 
